@@ -1,17 +1,10 @@
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
-from .models import Mahsulot
-from .serializers import MahsulotSerializer
+from rest_framework import viewsets
+from rest_framework.parsers import MultiPartParser, FormParser
+from .models import Mahsulot  # Mashina so'zini Mahsulotga almashtirdim
+from .serializers import MahsulotSerializer # Serializer ham Mahsulot bo'lishi kerak
 
-
-class MahsulotViewSet(ModelViewSet):
+class MahsulotViewSet(viewsets.ModelViewSet):
     queryset = Mahsulot.objects.all()
     serializer_class = MahsulotSerializer
-
-    def create(self, request, *args, **kwargs):
-        is_many = isinstance(request.data, list)
-        serializer = self.get_serializer(data=request.data, many=is_many)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    # Rasm yuklash uchun parserlar
+    parser_classes = (MultiPartParser, FormParser)
