@@ -1,14 +1,28 @@
 from django.db import models
 
-# Create your models here.
 class Mahsulot(models.Model):
+    # Mashina asosiy ma'lumotlari
     name = models.CharField(max_length=100)
-    color = models.CharField()
-    brand = models.CharField()
+    brand = models.CharField(max_length=50)
+    color = models.CharField(max_length=50)
     price = models.IntegerField()
     description = models.TextField()
-    transmission = models.CharField()
-    engine_volume = models.CharField()
+    transmission = models.CharField(max_length=50)
+    engine_volume = models.CharField(max_length=50)
     year = models.IntegerField()
-    fuel_type = models.CharField()
-    image = models.CharField()
+    fuel_type = models.CharField(max_length=50)
+    
+    # RASM: Mana shu qator bo'sh qolgan edi, uni qo'shdik
+    image = models.ImageField(upload_to='cars/', null=True, blank=True)
+
+    # Kontakt ma'lumotlari
+    owner_phone = models.CharField(max_length=20, default="+998901234567")
+    telegram_user = models.CharField(max_length=100, default="Rustamovv_E")
+    instagram_user = models.CharField(max_length=100, default="rustamovv.09")
+
+    def __str__(self):
+        return f"{self.name} - {self.owner_phone}"
+
+    class Meta:
+        verbose_name = "Mahsulot"
+        verbose_name_plural = "Mahsulotlar"

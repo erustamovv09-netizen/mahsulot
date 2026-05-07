@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ix-9d419k53ii*=f2+r%3m%q!lz^!w@6k*czqqy44b14i77-v#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,6 +56,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'dokon.urls'
 CORS_ALLOW_ALL_ORIGINS = True
+
+import os
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 TEMPLATES = [
     {

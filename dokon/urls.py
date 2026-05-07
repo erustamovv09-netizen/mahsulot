@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings # SHU QATORNI QO'SHING
+from django.conf.urls.static import static # SHU QATORNI QO'SHING
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include ("mahsulot.urls"))
-]
+    path('', include('mahsulot.urls')), # Sizning app url'laringiz
+] 
+
+# MANA BU QATORNI urlpatterns DAN KEYIN QO'SHING
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
