@@ -1,0 +1,12 @@
+# Virtual muhit va keshlar
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Local ma'lumotlar bazasi va rasmlar (serverda o'ziniki bo'ladi)
+db.sqlite3
+media/
+
+# Maxfiy fayllar
+.env
